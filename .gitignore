@@ -1,0 +1,32 @@
+# 🐍 Python/Django
+__pycache__/
+*.py[cod]
+*.sqlite3
+db.sqlite3
+env/
+venv/
+*.env
+config/settings/local.py
+*.log
+media/
+staticfiles/
+
+# 🌐 Node.js/React
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.next/
+frontend/dist/
+frontend/out/
+
+# ⚙️ Editor & Sistema Operativo
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 🚀 Git & Dependencias
+*.lock
+package-lock.json
+yarn.lock
+pip-log.txt
