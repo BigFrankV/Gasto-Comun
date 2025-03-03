@@ -9,17 +9,22 @@ from .serializers import UsuarioSerializer  # Confirma que el archivo `serialize
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
+from rest_framework import serializers
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-        token['username'] = user.username  # Puedes agregar más datos si quieres
-        return token
+    def validate(self, attrs):
+        email = attrs.get("username")  # Django espera "username"
+        password = attrs.get("password")
+
+        # Buscar usuario por email
+        user = User.objects.filter(email=email).first()
+        if user and user.check_password(password):
+            attrs["username"] = user.username  # ✅ Pasamos el username real al proceso de login
+            return super().validate(attrs)
+
+        raise serializers.ValidationError("Credenciales incorrectas")
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
-
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer

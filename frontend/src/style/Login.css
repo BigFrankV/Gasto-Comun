@@ -1,0 +1,46 @@
+/* Login.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.login-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+.login-box h2 {
+    color: #4B0082;
+    margin-bottom: 20px;
+}
+
+.login-box .form-control {
+    border: 1px solid #6C7A89;
+    border-radius: 5px;
+}
+
+.login-box .btn-primary {
+    background-color: #4B0082;
+    border-color: #4B0082;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.login-box .btn-primary:hover {
+    background-color: #3A0069;
+    border-color: #3A0069;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}

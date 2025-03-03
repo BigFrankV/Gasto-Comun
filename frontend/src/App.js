@@ -1,16 +1,19 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';   // Importa Home
-import Login from './components/Login'; // Importa Login
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router>
-  );
-}
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginForm from "./components/LoginForm";
+import Home from "./components/Home";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+const App = () => {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/login" element={<LoginForm />} />
+                <Route element={<ProtectedRoute />}>
+                    <Route path="/dashboard" element={<Home />} />
+                </Route>
+            </Routes>
+        </Router>
+    );
+};
 
 export default App;
