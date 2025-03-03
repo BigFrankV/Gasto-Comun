@@ -4,6 +4,10 @@ import { getUserData, clearUserData } from "../utils/user";
 import "bootstrap/dist/css/bootstrap.min.css"; // Importar Bootstrap
 import "../style/Home.css";
 
+// Importar imágenes
+import imgUser from "../assets/imagenes/img-user-basico-perfil-navbar.png";
+import imgAdmin from "../assets/imagenes/img-admin-perfil-navbar.png";
+
 const Home = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
@@ -20,7 +24,8 @@ const Home = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-
+   // 🔹 Determinar la imagen de perfil según el tipo de usuario
+  const profileImage = userData?.role === "admin" ? imgAdmin : imgUser;
   return (
     <div className="home-container">
       {/* Navbar fija */}
