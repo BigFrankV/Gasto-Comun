@@ -1,0 +1,110 @@
+/* Estilos generales */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal */
+.home-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Navbar fija arriba */
+.navbar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #343a40;
+    color: white;
+    z-index: 1000;
+}
+
+/* Título centrado en navbar */
+.navbar-title {
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Icono de perfil */
+.profile-icon {
+    margin-right: 20px;
+}
+
+.profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Sidebar fijo */
+.sidebar {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    padding-top: 80px; /* Espacio para que no quede detrás de la navbar */
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding-left: 15px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 15px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #495057;
+    border-radius: 5px;
+}
+
+/* Contenido principal */
+.main-content {
+    margin-left: 250px; /* Deja espacio para el sidebar */
+    padding: 100px 40px 40px; /* Margen superior para evitar que navbar lo cubra */
+    width: 100%;
+    text-align: center;
+}
+
+/* Botón de logout */
+.logout-button {
+    background-color: #FF5733;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #D43F00;
+}

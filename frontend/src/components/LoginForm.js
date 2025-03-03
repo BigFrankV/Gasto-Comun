@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { API_ENDPOINTS } from "../config";
 import { useNavigate } from "react-router-dom";
+import "../style/Login.css";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");

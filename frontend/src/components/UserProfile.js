@@ -1,39 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { setUserData } from "../utils/user"; // ✅ Eliminamos clearUserData
+import "../style/UserProfile.css";
 
 const UserProfile = () => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserDataState] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
-      .get('http://localhost:8000/usuarios/me/', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      .get("http://localhost:8000/api/usuarios/me/", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {
-        setUserData(response.data);
+        setUserDataState(response.data);
+        setUserData(response.data); // ✅ Guardamos los datos del usuario
       })
       .catch((error) => {
-        console.error('Error al obtener datos del usuario:', error);
+        console.error("Error al obtener datos del usuario:", error);
+        setError("No se pudo cargar la información del usuario.");
       });
   }, []);
 
-  if (!userData) return <div>Cargando...</div>;
+  if (error) return <div className="error-message">{error}</div>;
+  if (!userData) return <div className="loading">Cargando...</div>;
 
   return (
-    <div>
+    <div className="profile-container">
       <h1>Bienvenido, {userData.username}</h1>
-      {userData.groups.includes('Admin') && (
-        <div>
-          <h2>Acceso Admin</h2>
-          {/* Contenido exclusivo para administradores */}
-        </div>
-      )}
-      {userData.groups.includes('Usuario') && (
-        <div>
-          <h2>Acceso Usuario</h2>
-          {/* Contenido exclusivo para usuarios */}
-        </div>
-      )}
+      <p>Email: {userData.email}</p>
     </div>
   );
 };
