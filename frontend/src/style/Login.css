@@ -1,12 +1,18 @@
-/* Login.css */
+/* Estilos generales */
+body {
+    background-color: #FAFAFA;
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal del login */
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f8f9fa;
 }
 
+/* Caja de login */
 .login-box {
     background: white;
     padding: 30px;
@@ -16,17 +22,20 @@
     text-align: center;
 }
 
-.login-box h2 {
+/* Título */
+.login-box h3 {
     color: #4B0082;
     margin-bottom: 20px;
 }
 
-.login-box .form-control {
+/* Campos del formulario */
+.form-control {
     border: 1px solid #6C7A89;
     border-radius: 5px;
 }
 
-.login-box .btn-primary {
+/* Botón */
+.btn-primary {
     background-color: #4B0082;
     border-color: #4B0082;
     width: 100%;
@@ -35,12 +44,17 @@
     transition: background-color 0.3s ease;
 }
 
-.login-box .btn-primary:hover {
+.btn-primary:hover {
     background-color: #3A0069;
-    border-color: #3A0069;
 }
 
-.error-message {
-    color: red;
-    margin-bottom: 10px;
+/* Enlace de contraseña olvidada */
+.forgot-password {
+    color: #F39C12;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
 }

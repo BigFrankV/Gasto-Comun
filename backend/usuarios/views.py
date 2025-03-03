@@ -6,10 +6,14 @@ from django.contrib.auth import authenticate
 from rest_framework import viewsets
 from .models import Usuario  # Asegúrate de que el modelo está bien definido
 from .serializers import UsuarioSerializer  # Confirma que el archivo `serializers.py` existe
+from django.contrib.auth import get_user_model
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
+
+User = get_user_model()
+
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         email = attrs.get("username")  # Django espera "username"
@@ -25,6 +29,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
