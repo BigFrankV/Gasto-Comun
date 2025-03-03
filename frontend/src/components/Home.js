@@ -7,6 +7,7 @@ import "../style/Home.css";
 const Home = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
+  const [showModal, setShowModal] = useState(false); // Estado para el modal
 
   useEffect(() => {
     const storedUser = getUserData();
@@ -26,10 +27,10 @@ const Home = () => {
       <nav className="navbar navbar-dark bg-dark fixed-top">
         <div className="container-fluid d-flex justify-content-between align-items-center">
           <h1 className="navbar-title mx-auto">Gestión de Gastos Comunes</h1>
-          <div className="profile-icon">
-            <Link to="/perfil">
-              <img src="/perfil-icon.png" alt="Perfil" className="profile-img" />
-            </Link>
+
+          {/* Icono de perfil con evento para abrir modal */}
+          <div className="profile-icon" onClick={() => setShowModal(true)} style={{ cursor: "pointer" }}>
+            <img src="/perfil-icon.png" alt="Perfil" className="profile-img" />
           </div>
         </div>
       </nav>
@@ -49,8 +50,25 @@ const Home = () => {
       <div className="main-content">
         <h2>Bienvenido, {userData ? userData.username : "Usuario"}</h2>
         <p>Esperamos que tengas un gran día gestionando tus gastos.</p>
-        <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
       </div>
+
+      {/* Modal de Perfil */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h5>Opciones</h5>
+            <Link to="/perfil" className="btn btn-primary w-100 mb-2">
+              Ir al Perfil
+            </Link>
+            <button className="btn btn-danger w-100" onClick={handleLogout}>
+              Cerrar Sesión
+            </button>
+            <button className="btn btn-secondary w-100 mt-2" onClick={() => setShowModal(false)}>
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
