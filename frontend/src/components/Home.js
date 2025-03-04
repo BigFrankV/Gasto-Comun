@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserData, clearUserData } from "../utils/user";
-import "bootstrap/dist/css/bootstrap.min.css"; // Importar Bootstrap
+import Navbar from './Navbar';
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../style/Home.css";
-
-// Importar imágenes
-import imgUser from "../assets/imagenes/img-user-basico-perfil-navbar.png";
-import imgAdmin from "../assets/imagenes/img-admin-perfil-navbar.png";
 
 const Home = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
-  const [showModal, setShowModal] = useState(false); // Estado para el modal
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const storedUser = getUserData();
-    console.log("Usuario guardado en localStorage:", storedUser);
     setUserData(storedUser);
   }, []);
 
@@ -24,23 +20,11 @@ const Home = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-   // 🔹 Determinar la imagen de perfil según el tipo de usuario
-  const profileImage = userData?.role === "admin" ? imgAdmin : imgUser;
+
   return (
     <div className="home-container">
-      {/* Navbar fija */}
-      <nav className="navbar navbar-dark bg-dark fixed-top">
-        <div className="container-fluid d-flex justify-content-between align-items-center">
-          <h1 className="navbar-title mx-auto">Gestión de Gastos Comunes</h1>
-
-          {/* Icono de perfil con evento para abrir modal */}
-          <div className="profile-icon" onClick={() => setShowModal(true)} style={{ cursor: "pointer" }}>
-            <img src="/perfil-icon.png" alt="Perfil" className="profile-img" />
-          </div>
-        </div>
-      </nav>
-
-      {/* Sidebar fijo */}
+      <Navbar setShowModal={setShowModal} />
+      
       <div className="sidebar">
         <h2>Menú</h2>
         <ul>
@@ -51,13 +35,11 @@ const Home = () => {
         </ul>
       </div>
 
-      {/* Contenido principal */}
       <div className="main-content">
         <h2>Bienvenido, {userData ? userData.username : "Usuario"}</h2>
         <p>Esperamos que tengas un gran día gestionando tus gastos.</p>
       </div>
 
-      {/* Modal de Perfil */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
