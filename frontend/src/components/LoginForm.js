@@ -26,7 +26,9 @@ const LoginForm = () => {
             const data = await response.json();
             if (response.ok) {
                 localStorage.setItem("token", data.access); // Guardar token JWT
-                navigate("/dashboard");  // Redirigir al usuario autenticado
+                localStorage.setItem("userRole", data.role); // Agregar esto
+
+                navigate("/");  // Redirigir al usuario autenticado
             } else {
                 setError("Credenciales incorrectas");
             }

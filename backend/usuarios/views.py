@@ -58,3 +58,28 @@ class UserProfileView(APIView):
             'username': user.username,
             'groups': [group.name for group in user.groups.all()],
         })
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        email = attrs.get("username")
+        password = attrs.get("password")
+
+        user = User.objects.filter(email=email).first()
+        if user and user.check_password(password):
+            attrs["username"] = user.username
+            # Obtener el token validado
+            validated_data = super().validate(attrs)
+            
+            # Agregar datos adicionales al token
+            token = self.get_token(user)
+            token['email'] = user.email
+            token['username'] = user.username
+            token['is_superuser'] = user.is_superuser
+            token['tipo_usuario'] = user.tipo_usuario
+            
+            # Actualizar el token en la respuesta
+            validated_data['token'] = str(token)
+            return validated_data
+
+        raise serializers.ValidationError("Credenciales incorrectas")

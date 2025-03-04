@@ -129,3 +129,66 @@ body, html {
     width: 250px;
     text-align: center;
 }
+/* Contenido de la vista separada admin y user */
+
+.admin-sidebar {
+    background-color: #f8d7da;
+    border-right: 2px solid #dc3545;
+  }
+  
+  .user-sidebar {
+    background-color: #cce5ff;
+    border-right: 2px solid #0d6efd;
+  }
+  
+  .admin-banner {
+    background-color: #dc3545;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .user-banner {
+    background-color: #0d6efd;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .admin-badge {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  .user-badge {
+    background-color: #0d6efd;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  .admin-modal {
+    border-top: 4px solid #dc3545;
+  }
+  
+  .user-modal {
+    border-top: 4px solid #0d6efd;
+  }
+  
+  .widget {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .admin-dashboard-widgets, .user-dashboard-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  

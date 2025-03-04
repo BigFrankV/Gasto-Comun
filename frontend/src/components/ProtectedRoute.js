@@ -1,20 +1,20 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { getUserData } from "../utils/user";
+import { obtenerDatosUsuario } from "../utils/user";
 
-const ProtectedRoute = ({ allowedRoles }) => {
+const RutaProtegida = ({ rolesPermitidos }) => {
     const token = localStorage.getItem("token");
-    const userData = getUserData();
-    
+    const datosUsuario = obtenerDatosUsuario();
+   
     if (!token) {
         return <Navigate to="/login" />;
     }
 
-    if (allowedRoles && !allowedRoles.includes(userData?.role)) {
-        // Si el usuario no tiene el rol requerido, redirigir a una ruta por defecto
-        return <Navigate to="/unauthorized" />;
+    if (rolesPermitidos && !rolesPermitidos.includes(datosUsuario?.tipo_usuario)) {
+        // Si el usuario no tiene el rol requerido, redirigir a ruta no autorizada
+        return <Navigate to="/no-autorizado" />;
     }
 
     return <Outlet />;
 };
 
-export default ProtectedRoute;
+export default RutaProtegida;

@@ -89,12 +89,19 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'gastos_db',
-        'USER': 'admin_gastos',
-        'PASSWORD': 'tu_password_seguro',
+        'USER': 'postgres',
+        'PASSWORD': 'big',
         'HOST': 'localhost',
         'PORT': '5432',
+        'OPTIONS': {
+            'options': '-c client_encoding=UTF8'
+        }
     }
 }
+
+
+
+
 
 
 
