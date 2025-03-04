@@ -3,9 +3,10 @@ import { getUserData } from "../utils/user";
 import imgUser from "../assets/imagenes/img-user-basico-perfil-navbar.png";
 import imgAdmin from "../assets/imagenes/img-admin-perfil-navbar.png";
 import "../style/Navbar.css";
+
 const Navbar = ({ setShowModal }) => {
   const userData = getUserData();
-  const profileImage = userData?.role === "admin" ? imgAdmin : imgUser;
+  const profileImage = userData?.tipo_usuario === "admin" ? imgAdmin : imgUser;
 
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">

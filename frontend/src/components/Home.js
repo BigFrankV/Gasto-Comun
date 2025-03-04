@@ -21,6 +21,37 @@ const Home = () => {
     navigate("/login");
   };
 
+  const getTipoUsuario = (userData) => {
+    if (userData?.is_superuser) return "Administrador";
+    if (userData?.tipo_usuario === "admin") return "Administrador";
+    return "Usuario Básico";
+  };
+
+  const renderMenuItems = () => {
+    const itemsComunes = [
+      { to: "/dashboard", text: "Dashboard" },
+      { to: "/gasto-comun", text: "Gasto Común" },
+      { to: "/multas", text: "Multas" },
+      { to: "/notificaciones", text: "Notificaciones" },
+    ];
+
+    const itemsAdmin = [
+      { to: "/admin/usuarios", text: "Gestión de Usuarios" },
+      { to: "/admin/reportes", text: "Reportes" },
+    ];
+
+    return (
+      <>
+        {itemsComunes.map((item) => (
+          <li key={item.to}><Link to={item.to}>{item.text}</Link></li>
+        ))}
+        {(userData?.is_superuser || userData?.tipo_usuario === "admin") && itemsAdmin.map((item) => (
+          <li key={item.to}><Link to={item.to}>{item.text}</Link></li>
+        ))}
+      </>
+    );
+  };
+
   return (
     <div className="home-container">
       <Navbar setShowModal={setShowModal} />
@@ -28,15 +59,13 @@ const Home = () => {
       <div className="sidebar">
         <h2>Menú</h2>
         <ul>
-          <li><Link to="/dashboard">Dashboard</Link></li>
-          <li><Link to="/gasto-comun">Gasto Común</Link></li>
-          <li><Link to="/multas">Multas</Link></li>
-          <li><Link to="/notificaciones">Notificaciones</Link></li>
+          {renderMenuItems()}
         </ul>
       </div>
 
       <div className="main-content">
-        <h2>Bienvenido, {userData ? userData.username : "Usuario"}</h2>
+        <h2>Bienvenido, {userData ? userData.email : "Usuario"}</h2>
+        <p className="tipo-usuario">Tipo de usuario: {getTipoUsuario(userData)}</p>
         <p>Esperamos que tengas un gran día gestionando tus gastos.</p>
       </div>
 
